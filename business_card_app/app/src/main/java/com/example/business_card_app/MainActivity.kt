@@ -61,8 +61,9 @@ fun AllToGether(modifier: Modifier = Modifier, firstname: String, lastname: Stri
 @Composable
 fun nameAndLastname(firstname: String, lastname: String, modifier: Modifier = Modifier) {
     Column (modifier = modifier
-        .fillMaxWidth().fillMaxHeight()
-        .wrapContentSize(align = Alignment.Center)){
+        .fillMaxWidth()
+        .fillMaxHeight()
+        .wrapContentSize(align = Alignment.Center).padding(start = 37.dp)){
         Text(
             text = "$firstname",
             fontSize = 35.sp,
@@ -73,12 +74,27 @@ fun nameAndLastname(firstname: String, lastname: String, modifier: Modifier = Mo
             text = "$lastname",
             fontSize = 25.sp,
             color = Color.White,
-            modifier = Modifier.padding(start = 37.dp)
+        )
+        contactDetails(number = 758491773, email = "arkadiptak49@gmail.com")
+    }
+}
+@Composable
+fun contactDetails(number: Int, email: String, modifier: Modifier = Modifier) {
+    Column (
+        ){
+        Text(
+            text = "$number",
+            fontSize = 20.sp,
+            color = Color.White,
+        )
+        Text(
+            text = "$email",
+            fontSize = 20.sp,
+            color = Color.White,
         )
 
     }
 }
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
