@@ -4,12 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.layout.wrapContentWidth
@@ -38,7 +42,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    AllToGether(firstname = "Arkadipta", lastname = "Kundu");
+                    BusinessCard(
+                        firstname = "Arkadipta", lastname = "Kundu",
+                        email = "arkadiptak49@gmail.com", number = 7584917773
+                    );
                 }
             }
         }
@@ -46,24 +53,26 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun AllToGether(modifier: Modifier = Modifier, firstname: String, lastname: String) {
-    Box {
-        val image = painterResource(R.drawable.annie_spratt_6a3nqq1ywbw_unsplash);
+fun BusinessCard(
+    modifier: Modifier = Modifier,
+    firstname: String,
+    lastname: String,
+    number: Long,
+    email: String
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxHeight()
+            .fillMaxWidth()
+            .background(color = Color.DarkGray)
+            .wrapContentSize(align = Alignment.Center)
+    ) {
+        val image = painterResource(id = R.drawable.me_in_coat)
         Image(
-            painter = image,
-            contentDescription = null,
-            contentScale = ContentScale.Crop
+            painter = image, contentDescription = null, modifier = Modifier
+                .height(120.dp)
+                .width(150.dp)
         )
-        nameAndLastname(firstname = firstname, lastname = lastname);
-    }
-}
-
-@Composable
-fun nameAndLastname(firstname: String, lastname: String, modifier: Modifier = Modifier) {
-    Column (modifier = modifier
-        .fillMaxWidth()
-        .fillMaxHeight()
-        .wrapContentSize(align = Alignment.Center).padding(start = 37.dp)){
         Text(
             text = "$firstname",
             fontSize = 35.sp,
@@ -75,13 +84,60 @@ fun nameAndLastname(firstname: String, lastname: String, modifier: Modifier = Mo
             fontSize = 25.sp,
             color = Color.White,
         )
+    }
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 600.dp)
+            .padding(bottom = 70.dp)
+            .wrapContentSize(align = Alignment.Center)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 60.dp),
+        ) {
+            Text(text = "📧", fontSize = 20.sp)
+            Text(
+                text = "$email",
+                fontSize = 20.sp,
+                color = Color.White, modifier = Modifier.padding(start = 10.dp)
+            )
+        }
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 60.dp),
+        ) {
+            Text(text = "📞", fontSize = 20.sp)
+            Text(
+                text = "$number",
+                fontSize = 20.sp,
+                color = Color.White, modifier = Modifier.padding(start = 10.dp)
+            )
+        }
+
+    }
+}
+
+@Composable
+fun nameAndLastname(firstname: String, lastname: String, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
+
+            .padding(start = 37.dp)
+    ) {
+
         contactDetails(number = 758491773, email = "arkadiptak49@gmail.com")
     }
 }
+
 @Composable
 fun contactDetails(number: Int, email: String, modifier: Modifier = Modifier) {
-    Column (
-        ){
+    Column(
+    ) {
         Text(
             text = "$number",
             fontSize = 20.sp,
@@ -95,10 +151,14 @@ fun contactDetails(number: Int, email: String, modifier: Modifier = Modifier) {
 
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     Business_card_appTheme {
-        AllToGether(firstname = "Arkadipta", lastname = "Kundu");
+        BusinessCard(
+            firstname = "Arkadipta", lastname = "Kundu",
+            email = "arkadiptak49@gmail.com", number = 7584917773
+        );
     }
 }
