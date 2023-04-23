@@ -1,5 +1,6 @@
 package com.example.greeting_app
 
+import android.media.tv.TvContract.Channels.Logo
 import android.os.Bundle
 import android.os.Message
 import androidx.activity.ComponentActivity
@@ -63,6 +64,7 @@ fun GreetMeWithImage(message: String, by: String, modifier: Modifier = Modifier)
 @Composable
 fun GreetMeWithText(message: String, by: String,modifier: Modifier = Modifier) {
     Column {
+
         Text(
             text = message,
             fontSize = 40.sp,
